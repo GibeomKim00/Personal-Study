@@ -60,13 +60,26 @@
 >><pre><code>first = {'a':1, 'b':2}
 >>second = {'b':'platypus'}
 >>first.update(second) # 같은 키값이 존재할 경우 병합을 당하는 딕셔너리의 value값이 저장된다.</code></pre>
->>* 키와 del을 통한 특정 항목 삭제 + clear()를 통한 모든 항목 삭제
+>>* 키와 del을 통한 특정 항목 삭제 또는 clear()를 통한 모든 항목 삭제
 >><pre><code>del first['a']
 >>first.clear()</code></pre>
 >>* in을 통한 키값 존재 유무 파악하기
 >><pre><code>pythons = {'Chapman':'Graham', 'Clees':'John', 'Jones':'Terry', 'Palin':'Michael'}
 >>'Chapman' in pythons # true
 >>'Gillian' in ptrhons # false</code></pre>
+>>* 누락된 키 처리하기
+>>   * setdefault(): 키가 누락된 경우 딕셔너리에 항목을 할당하며, 기존에 키가 존재할 경우 원래 있던 value 값이 반환되고 아무것도 바뀌지 않는다.
+>><pre><code>periodic_table = {'Hydrogen':1, 'Helium':2}
+>>periodic_table.setdefault('Carbon', 12)
+>>periodic_table
+>># 출력값
+>>{'Hydrogen':1, 'Carbon':12, 'Helium':2}</code></pre>
+>>   * defaultdict(): 딕셔너리 생성 시 모든 새 키에 대한 기본값을 지정하며, 이 함수의 인자는 **함수**이다.
+>><pre><code>from collections import defaultdict
+>>periodic_table = defaultdict(int)
+>>periodic_table['Lead']
+>># 출력값:</code></pre>
+>>
 >>* 딕셔너리 함수들
 >>   * get(a, b): 키(a)가 존재하면 그에 대응하는 value값을 키값이 존재하지 않으면 옵션값(b)를 출력한다. 
 >>   * keys(): 모든 키 얻기
@@ -130,8 +143,3 @@
 >># 두 번째 셋에는 첫 번째 셋의 모든 멤버를 포함한 그 이상의 멤버가 있어야 한다.(동일해서는 안 됨)
 >>a < b # 출력값: false
 >></code></pre>
->>
->>
->>
->>
->>
